@@ -1,30 +1,34 @@
 {
-  "iOS" : [
-    {
-      "hash" : "9d97688f169b331ae19bba15fd17d9a79c99c54c783a85013d7f3f5a9e158366",
-      "name" : "RileyLinkBLEKit"
-    },
-    {
-      "hash" : "e2c80229794ea573fdffd0801aedc0129c931b5b416c6f65af63bd076b871c30",
-      "name" : "NightscoutUploadKit"
-    },
-    {
-      "hash" : "99e9ae36e543d2f09cdd9afbf93d2217d19c62809ed802a593ab3328134c1405",
-      "name" : "RileyLinkKit"
-    },
-    {
-      "hash" : "f7eb5e6e87317c07a66762e5b49cb7180632c7cf51e0d532a58aeaac2d5c806e",
-      "name" : "MinimedKit"
-    }
+  "Mac" : [
+
   ],
-  "commitish" : "v1.2.0",
   "watchOS" : [
 
   ],
   "tvOS" : [
 
   ],
-  "Mac" : [
-
+  "commitish" : "v1.2.2",
+  "iOS" : [
+    {
+      "name" : "Crypto",
+      "hash" : "cf827291cafc53cd9784a990f8004938baf00a8846c1242741f7327cc64288a8"
+    },
+    {
+      "name" : "RileyLinkBLEKit",
+      "hash" : "01ee14aa0bef55bc10c3fe873faab44f620c931b5d94d4371b247c71a715fbc3"
+    },
+    {
+      "name" : "NightscoutUploadKit",
+      "hash" : "feacf878673d06ebd7163c0019208534d710694c601f3934c0aaa8668240dc74"
+    },
+    {
+      "name" : "RileyLinkKit",
+      "hash" : "c69283c2261ae49f48518d43abf29a0f6d23269ef6bf711cb3ef1f17277a454e"
+    },
+    {
+      "name" : "MinimedKit",
+      "hash" : "f8bca4e2b5e9aad48e0340c9be8b7a6ff005b9e84ad21931a5cca0ef44a58ddb"
+    }
   ]
 }

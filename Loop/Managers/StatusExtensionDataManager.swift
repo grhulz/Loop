@@ -10,6 +10,8 @@ import HealthKit
 import UIKit
 import CarbKit
 import LoopKit
+import InsulinKit
+import LoopUI
 
 
 final class StatusExtensionDataManager {
@@ -133,6 +135,22 @@ final class StatusExtensionDataManager {
                 )
             }
             
+            updateGroup.enter()
+            manager.doseStore.insulinOnBoard(at: Date()) {(result) in
+                // This function completes asynchronously, so below
+                // is a completion that returns a value after eventual
+                // function completion.  Currently the time of update
+                // isn't used in the code, but could e.g. check how
+                // recent it is. 
+                switch result {
+                case .success(let iobValue):
+                    context.activeInsulin = iobValue.value                    
+                case .failure:
+                    context.activeInsulin = nil
+                }
+                updateGroup.leave()
+            }
+
             if let batteryPercentage = dataManager.pumpBatteryChargeRemaining {
                 context.batteryPercentage = batteryPercentage
             }
@@ -148,12 +166,13 @@ final class StatusExtensionDataManager {
                         )
                     }
 
-                if let override = targetRanges.temporaryOverride {
+                if let override = targetRanges.override {
                     context.temporaryOverride = DatedRangeContext(
-                        startDate: override.startDate,
-                        endDate: override.endDate,
+                        startDate: override.start,
+                        endDate: override.end ?? .distantFuture,
                         minValue: override.value.minValue,
-                        maxValue: override.value.maxValue)
+                        maxValue: override.value.maxValue
+                    )
                 }
             }
 
@@ -162,7 +181,8 @@ final class StatusExtensionDataManager {
                     isStateValid: sensorInfo.isStateValid,
                     stateDescription: sensorInfo.stateDescription,
                     trendType: sensorInfo.trendType,
-                    isLocal: sensorInfo.isLocal)
+                    isLocal: sensorInfo.isLocal
+                )
             }
 
             updateGroup.notify(queue: DispatchQueue.global(qos: .background)) {
